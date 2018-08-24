@@ -1,0 +1,41 @@
+{
+  "name": "moleculer-babel-example",
+  "version": "1.0.0",
+  "description": "My Moleculer microservice",
+  "scripts": {
+    "dev": "npm run build -- --watch & moleculer-runner --repl --hot dist",
+    "start": "npm run build && moleculer-runner dist",
+    "build": "babel ./src --out-dir ./dist --ignore \"**/*.test.js\" --copy-files",
+    "ci": "jest --watch",
+    "test": "jest --coverage",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "microservices",
+    "moleculer"
+  ],
+  "author": "",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.3.3",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.0.1",
+    "jest": "^23.3.0",
+    "jest-cli": "^23.3.0",
+    "moleculer-repl": "^0.5.0"
+  },
+  "dependencies": {
+    "moleculer": "^0.13.0"
+  },
+  "engines": {
+    "node": ">= 8.x.x"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "rootDir": "./services",
+    "roots": [
+      "../test"
+    ]
+  }
+}
