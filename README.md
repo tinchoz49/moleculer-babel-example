@@ -22,3 +22,10 @@ npm run ci
 npm run lint
 ```
 
+## Usage
+
+``` bash
+$ npm run dev
+$ moleculer-repl: call 'math.sum' --a 2 --b 4
+```
+

@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "My Moleculer microservice",
   "scripts": {
-    "dev": "npm run build -- --watch & moleculer-runner --repl --hot dist",
+    "clear": "rm -rf ./dist",
+    "dev": "npm run watch-babel & npm run watch-moleculer",
+    "watch-babel": "npm run build -- --watch --source-maps inline",
+    "watch-moleculer": "nodemon --watch dist --exec 'moleculer-runner --repl dist'",
     "start": "npm run build && moleculer-runner dist",
-    "build": "babel ./src --out-dir ./dist --ignore \"**/*.test.js\" --copy-files",
+    "build": "npm run clear && babel ./src --out-dir ./dist --ignore \"**/*.test.js\" --copy-files",
     "ci": "jest --watch",
     "test": "jest --coverage",
     "lint": "eslint src"
@@ -14,7 +17,7 @@
     "microservices",
     "moleculer"
   ],
-  "author": "",
+  "author": "Martín Acosta",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.3.3",
@@ -22,7 +25,8 @@
     "eslint": "^5.0.1",
     "jest": "^23.3.0",
     "jest-cli": "^23.3.0",
-    "moleculer-repl": "^0.5.0"
+    "moleculer-repl": "^0.5.0",
+    "nodemon": "^1.18.3"
   },
   "dependencies": {
     "moleculer": "^0.13.0"
@@ -33,9 +37,9 @@
   "jest": {
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
-    "rootDir": "./services",
+    "rootDir": "./src",
     "roots": [
-      "../test"
+      "../tests"
     ]
   }
 }
